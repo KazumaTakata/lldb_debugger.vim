@@ -37,6 +37,12 @@ fun! Send_run(channel)
 endfun
 
 
+fun! Send_stack_variable(channel)
+    let l:command = "frame variable" . "\n"
+    call ch_sendraw(a:channel,l:command) 
+endfun
+
+
 fun! Send_get_filepath_lnum(channel)
     let g:sent_command = "source_info"
     let l:command = "source info" . "\n"
@@ -60,18 +66,20 @@ endfun
 fun! Go_to(path_lnum)
     execute "edit ". a:path_lnum.path
     call cursor(a:path_lnum.lnum, 0) 
+    exe ":sign unplace 2 file=". expand("%:p")
     exe ":sign place 2 line=". a:path_lnum.lnum ." name=piet file=" . expand("%:p")     
     echom "aaa"
     redraw!
 endfun
 
 
-fun! Show_stack_env()
-    pedit stack
+fun! Show_stack_env(value)
+    botright pedit stack_tmp 
     noautocmd wincmd P
     set buftype=nofile
-    call append(0, "variable in stack")
+    call append(0, a:value)
     noautocmd wincmd p
+    redraw!
 endfun
 
 
@@ -79,7 +87,7 @@ fun! Read_all(channel)
     let buf = [] 
      
     while 1 
-    let output = ch_readraw(a:channel)
+    let output = ch_readraw(a:channel, {"timeout": 500})
     if output == "" || stridx(output, "stopped.") > 0
         break
     endif 
@@ -89,6 +97,7 @@ fun! Read_all(channel)
     return buf
 
 endfun
+
 
 let exe_name = input('executable file: ')
 
@@ -108,8 +117,8 @@ let output = Read_all(channel)
 let output = Send_run(channel)
 let output = Read_all(channel)
 
-call Send_next(channel)
-call Read_all(channel)
+"call Send_next(channel)
+"call Read_all(channel)
 
 let output = Send_get_filepath_lnum(channel)
 let output = Read_all(channel)
@@ -126,24 +135,19 @@ while 1
 
         let output = Send_get_filepath_lnum(channel)
         let output = Read_all(channel)
-
+       
         for line in output 
             call MyHandler(line)
         endfor
+         
+        call Send_stack_variable(channel)
+        let output = Read_all(channel)
+        call Show_stack_env(join(output, "\n")) 
     
     elseif input_data == "quit"
         break
     endif 
 
-
-    
-
-
-
 endwhile
-
-
-
-"echom output
 
 
