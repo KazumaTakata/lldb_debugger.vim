@@ -2,6 +2,8 @@
 let g:res = ""
 let g:sent_command = ""
 sign define piet text=>> texthl=Search
+sign define breakpoint text=X texthl=Search
+
 
 
 
@@ -18,13 +20,20 @@ endfun
 fun! Send_set_breakpoint_fun(channel, func_name)
     let g:sent_command = "set_breakpoint"
     let l:command = "breakpoint set --name" . a:func_name .  "\n"
-    return ch_evalraw(a:channel,l:command)  
+    call ch_sendraw(a:channel,l:command)  
 endfun
+
+fun! Send_step(channel)
+    let g:sent_command = "step"
+    let l:command = "step\n"
+    call ch_sendraw(a:channel,l:command)  
+endfun
+
 
 fun! Send_next(channel)
     let g:sent_command = "next"
     let l:command = "next\n"
-    return ch_evalraw(a:channel,l:command)  
+    call ch_sendraw(a:channel,l:command)  
 endfun
 
 
@@ -32,7 +41,7 @@ endfun
 fun! Send_run(channel)
     let g:sent_command = "run"
     let l:command = "run" . "\n"
-    return ch_evalraw(a:channel,l:command) 
+    call ch_sendraw(a:channel,l:command) 
 
 endfun
 
@@ -46,7 +55,7 @@ endfun
 fun! Send_get_filepath_lnum(channel)
     let g:sent_command = "source_info"
     let l:command = "source info" . "\n"
-    return ch_evalraw(a:channel,l:command) 
+    call ch_sendraw(a:channel,l:command) 
 endfun
 
 fun! MyHandler(msg)
@@ -68,7 +77,6 @@ fun! Go_to(path_lnum)
     call cursor(a:path_lnum.lnum, 0) 
     exe ":sign unplace 2 file=". expand("%:p")
     exe ":sign place 2 line=". a:path_lnum.lnum ." name=piet file=" . expand("%:p")     
-    echom "aaa"
     redraw!
 endfun
 
@@ -99,6 +107,23 @@ fun! Read_all(channel)
 endfun
 
 
+fun! Read_stack_variable(channel)
+    let channel = a:channel
+
+    call Send_get_filepath_lnum(channel)
+    let output = Read_all(channel)
+   
+    for line in output 
+        call MyHandler(line)
+    endfor
+     
+    call Send_stack_variable(channel)
+    let output = Read_all(channel)
+    call Show_stack_env(join(output, "\n")) 
+
+
+endfun
+
 let exe_name = input('executable file: ')
 
 
@@ -110,17 +135,17 @@ let job = job_start("lldb ". exe_name , {"drop": "never"})
 
 let channel = job_getchannel(job)
 
-let output =  ch_evalraw(channel, "breakpoint set --name main\n")  
+call  ch_sendraw(channel, "breakpoint set --name main\n")  
 let output = Read_all(channel)
 
 
-let output = Send_run(channel)
+call Send_run(channel)
 let output = Read_all(channel)
 
 "call Send_next(channel)
 "call Read_all(channel)
 
-let output = Send_get_filepath_lnum(channel)
+call Send_get_filepath_lnum(channel)
 let output = Read_all(channel)
 
 for line in output 
@@ -133,18 +158,38 @@ while 1
         call Send_next(channel)
         call Read_all(channel)
 
-        let output = Send_get_filepath_lnum(channel)
-        let output = Read_all(channel)
-       
-        for line in output 
-            call MyHandler(line)
-        endfor
-         
-        call Send_stack_variable(channel)
+        call Read_stack_variable(channel)
+
+    elseif input_data == "step"
+        call Send_step(channel)
+        call Read_all(channel)
+    
+        call Read_stack_variable(channel)
+
+    elseif stridx(input_data, "print") >= 0
+        call ch_sendraw(channel, input_data. "\n") 
         let output = Read_all(channel)
         call Show_stack_env(join(output, "\n")) 
-    
+
+    elseif stridx(input_data, "breakpoint") == 0
+        let command = split(input_data, " ")
+        if command[1] == "set" 
+            call assert_equal(command[2], "-f")    
+            let file_name = command[3]
+            let line_num = command[5]
+
+            exe ":sign place 3 line=". line_num ." name=piet file=" . file_name     
+
+            call ch_sendraw(channel, input_data. "\n") 
+            let output = Read_all(channel)
+            
+              
+
+        endif
+
+
     elseif input_data == "quit"
+        call job_stop(job)
         break
     endif 
 

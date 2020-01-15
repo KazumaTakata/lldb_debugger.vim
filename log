@@ -237,3 +237,117 @@ Lines found in module `a.out
 Lines found in module `a.out
 [0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
     0x7fff6fe9b01d <+0>: push   rbp
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+    0x7fff6fe9b01d <+0>: push   rbp
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+libdyld.dylib`dyld3::kdebug_trace_dyld_image:
+    0x7fff6fe9b01d <+0>: push   rbp
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f46-0x0000000100000f48): /Users/kazumatakata/vim_script/gdb_debugger/././test/test.h:5:5
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f46-0x0000000100000f48): /Users/kazumatakata/vim_script/gdb_debugger/././test/test.h:5:5
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f75-0x0000000100000f7e): /Users/kazumatakata/vim_script/gdb_debugger/main.c:13:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f7e-0x0000000100000f89): /Users/kazumatakata/vim_script/gdb_debugger/main.c:14:4
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f46-0x0000000100000f48): /Users/kazumatakata/vim_script/gdb_debugger/././test/test.h:5:5
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f6e-0x0000000100000f75): /Users/kazumatakata/vim_script/gdb_debugger/main.c:12:8
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
+(lldb) source info
+Lines found in module `a.out
+[0x0000000100000f5f-0x0000000100000f6b): /Users/kazumatakata/vim_script/gdb_debugger/main.c:11:12
